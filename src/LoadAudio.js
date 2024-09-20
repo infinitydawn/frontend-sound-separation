@@ -6,6 +6,7 @@ function LoadAudio({ onUpdateData }) {
     let fetchLink = process.env.REACT_APP_API_URL;
 
     const handleClick = () => {
+        alert("clicked")
         setFileStatus("Waiting for response from server...");
         fetch(`${fetchLink}/load-track`, {
             method: "GET"
