@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import './FileUpload.css';
 
 function FileUpload({ onUpdateData }) {
   let fetchLink = process.env.REACT_APP_API_URL;
   const [selectedFile, setSelectedFile] = useState(null);
+  const [requestStatus, setReqStatus] = useState('');
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -10,6 +12,7 @@ function FileUpload({ onUpdateData }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setReqStatus("Uploading...")
     if (selectedFile) {
       console.log(selectedFile)
       if (selectedFile.type === "audio/wav") {
@@ -23,12 +26,11 @@ function FileUpload({ onUpdateData }) {
           .then(response => response.json())
           .then(data => {
             console.log(data);
+            setReqStatus("Uploaded Successfully!")
             //alert(data.message);
 
             // pass data to chart
             if (onUpdateData) {
-
-              alert("updating data")
               let samplesArray = data.message.split(",")
               samplesArray[0] = samplesArray[0].substring(1, samplesArray[0].length)
               let last = samplesArray.length - 1
@@ -43,18 +45,20 @@ function FileUpload({ onUpdateData }) {
           })
           .catch(error => {
             console.error('Error:', error);
+            setReqStatus(error)
           });
       } else {
-        alert("Wrong file type. Please select a WAV file, and try to upload it again.")
+        setReqStatus("Wrong file type. Please select a WAV file, and try to upload it again.")
       }
     } else {
-      alert("File upload field is empty, please select a WAV file.")
+      setReqStatus("File upload field is empty, please select a WAV file.")
     }
   };
 
   return (
     <div>
       <h2>Upload a File</h2>
+      <h3>{requestStatus}</h3>
       <form onSubmit={handleSubmit}>
         <input type="file" onChange={handleFileChange} />
         <button type="submit">Upload</button>

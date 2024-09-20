@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
+import './LoadAudio.css';
 
 function LoadAudio({ onUpdateData }) {
     const [fileStatus, setFileStatus] = useState("Unknown");
+    const [audioIndex, setAudioIndex] = useState(0);
 
     let fetchLink = process.env.REACT_APP_API_URL;
 
-    const handleClick = () => {
-        alert("clicked")
+    const handleNumChange = (event) => {
+        setAudioIndex(event.target.value);
+    }
+
+    const handleClick = (event) => {
+        event.preventDefault();
         setFileStatus("Waiting for response from server...");
-        fetch(`${fetchLink}/load-track`, {
+        fetch(`${fetchLink}/load-track?audioIndex=${audioIndex}`, {
             method: "GET"
         })
             .then(response => response.json())
@@ -16,18 +22,13 @@ function LoadAudio({ onUpdateData }) {
                 console.log(data.message);
                 setFileStatus(data.message);
 
-                // Assuming the server response contains data for the chart
+                // Sending the data to the chart
                 if (onUpdateData) {
-                    let samplesArray = data.message.split(",")
-                    samplesArray[0] = samplesArray[0].substring(1, samplesArray[0].length)
-                    let last = samplesArray.length - 1
-                    samplesArray[samplesArray.length - 1] = samplesArray[samplesArray.length - 1].substring(0, samplesArray[last].length - 2)
+        
+                    let samplesArray = data.message.split(",");
 
-
-                    samplesArray = samplesArray.map(sample => parseInt(sample));
-                    console.log(samplesArray)
-
-                    onUpdateData(samplesArray);  // Update the chart data with the result
+                    samplesArray = samplesArray.map(sample => parseInt(sample.trim()));
+                    onUpdateData(samplesArray); 
                 }
             })
             .catch(err => {
@@ -39,9 +40,10 @@ function LoadAudio({ onUpdateData }) {
     return (
         <div>
             <form>
-                <input type="number" placeholder="type index of audio"></input>
+                <input onChange={handleNumChange} type="number" placeholder="type index of audio"></input>
+                <label>Selected Index: {audioIndex}</label>
                 <button onClick={handleClick}>
-                    Get Upload Status
+                    Load Data To Chart
                 </button>
             </form>
             <h2>

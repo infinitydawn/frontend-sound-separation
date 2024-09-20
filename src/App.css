@@ -1,12 +1,132 @@
+/* General Page Styles */
 .App {
   text-align: center;
-  margin-top: 50px;
+  margin: 20px;
+  font-family: Arial, sans-serif;
 }
 
-form {
-  margin-top: 20px;
+h1 {
+  margin-bottom: 20px;
 }
 
-input[type="file"] {
-  margin-right: 10px;
+h2 {
+  margin-bottom: 15px;
+}
+
+/* Section Styles */
+.section {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin: 20px auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+}
+
+/* File Upload Section */
+.file-upload-section form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.file-upload-section button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Load Audio Section */
+.load-audio-section form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.load-audio-section input[type="number"] {
+  width: 50px;
+  padding: 5px;
+}
+
+.load-audio-section button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Get Uploads Section */
+.get-uploads-section {
+  text-align: left;
+}
+
+/* Chart Section */
+.chart-section {
+  margin-top: 30px;
+}
+
+/* Button Styles */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Input Styles */
+input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Mobile Styles */
+@media (max-width: 600px) {
+  .file-upload-section form,
+  .load-audio-section form {
+    flex-direction: column; /* Stack elements vertically on small screens */
+    gap: 5px; /* Smaller gap on mobile */
+  }
+
+  button {
+    width: 100%; /* Full-width buttons on mobile */
+    padding: 10px; /* Larger padding for better tap targets */
+  }
+
+  .section {
+    width: 95%; /* Take up more horizontal space on mobile */
+  }
+
+  input {
+    width: 100%; /* Full-width inputs on mobile */
+  }
+}
+
+/* General Styles */
+.get-uploads-section h2 div {
+  word-wrap: break-word; /* Force long words to break */
+  max-width: 100%; /* Ensure it doesn’t stretch too wide */
+  white-space: normal; /* Allow wrapping */
+  margin-bottom: 5px; /* Add some space between file names */
+}
+
+/* Optional: If you want ellipsis for long text */
+.get-uploads-section h2 div {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: block;
+}
+
+/* Section for managing text overflow */
+.get-uploads-section {
+  text-align: left;
+  overflow-wrap: break-word;
 }

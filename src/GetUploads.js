@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './GetUploads.css'
 
 
 function GetUploads() {
@@ -7,7 +7,8 @@ function GetUploads() {
 
     let fetchLink = process.env.REACT_APP_API_URL;
 
-    const handleClick = () => {
+    const handleClick = (event) => {
+        event.preventDefault();
         fetch(`${fetchLink}/see-uploads`, {
             method: "GET"
         })
@@ -27,9 +28,7 @@ function GetUploads() {
             <h2>
                 {uploadsList.length > 0
                     ? uploadsList.map((item, index) => (
-                        <div key={index}>
-                            #{index} - {item}
-                        </div>
+                        <div class="upload-item" key={index}>#{index} - {item}</div>
                     ))
                     : 'No uploads to display'}
             </h2>

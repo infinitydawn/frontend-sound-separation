@@ -1,0 +1,20 @@
+.load-audio-container {
+    margin: 20px;
+    padding: 10px;
+  }
+  
+  .load-audio-form {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between input, label, and button */
+  }
+  
+  input[type="number"] {
+    width: 50px;
+    padding: 5px;
+  }
+  
+  button {
+    padding: 5px 10px;
+  }
+  

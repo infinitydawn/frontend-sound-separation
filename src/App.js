@@ -16,10 +16,31 @@ function App() {
   return (
     <div className="App">
       <h1>Percussion Remover App</h1>
-      <FileUpload onUpdateData={handleUpdateData} />
-      <LoadAudio onUpdateData={handleUpdateData} />  {/* Pass the function */}
-      <GetUploads />
-      <LineChart chartData={chartData} />  {/* Pass chart data as props */}
+
+      {/* Container for the File Upload Section */}
+      <div className="section file-upload-section">
+        <FileUpload onUpdateData={handleUpdateData} />
+      </div>
+      {/* Container for Get Uploads Section */}
+      <div className="section get-uploads-section">
+        <h2>Available Uploads</h2>
+        <GetUploads />
+      </div>
+
+      {/* Container for the Load Audio Section */}
+      <div className="section load-audio-section">
+        <h2>Select and Load Audio</h2>
+        <LoadAudio onUpdateData={handleUpdateData} />
+      </div>
+
+      
+
+      {/* Container for Line Chart Section */}
+      <div className="section chart-section">
+        <h2>Audio Data Chart</h2>
+        <LineChart chartData={chartData} />  {/* Pass chart data as props */}
+      </div>
+      
     </div>
   );
 }

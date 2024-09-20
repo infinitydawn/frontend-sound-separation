@@ -1,0 +1,15 @@
+.file-upload-container {
+    margin: 20px;
+    padding: 10px;
+  }
+  
+  .file-upload-form {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between file input and button */
+  }
+  
+  button {
+    padding: 5px 10px;
+  }
+  
