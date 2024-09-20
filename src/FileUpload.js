@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
 function FileUpload({ onUpdateData }) {
-  let fetchLink = 'https://backend-sound-separation.onrender.com'
-  // let fetchLink = 'http://localhost:5000'
+  let fetchLink = process.env.REACT_APP_API_URL;
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFileChange = (event) => {

@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 function GetUpdateButton({ onUpdateData }) {
     const [fileStatus, setFileStatus] = useState("Unknown");
 
-    let fetchLink = 'https://backend-sound-separation.onrender.com';
-    // let fetchLink = 'http://localhost:5000';
+    let fetchLink = process.env.REACT_APP_API_URL;
 
     const handleClick = () => {
         setFileStatus("Waiting for response from server...");
