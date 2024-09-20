@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 
 function GetUploads() {
-    const [fileStatus, setFileStatus] = useState("Unknown")
+    const [uploadsList, setUploadsList] = useState([0, "Unknown"])
 
     let fetchLink = process.env.REACT_APP_API_URL;
 
@@ -11,11 +11,11 @@ function GetUploads() {
         fetch(`${fetchLink}/see-uploads`, {
             method: "GET"
         })
-        .then(response => response.json())
-        .then((data) => {
-            console.log(data.message)
-            setFileStatus(data.message);
-        })
+            .then(response => response.json())
+            .then((data) => {
+                console.log(data.message)
+                setUploadsList(data.message);
+            })
     }
 
     return (
@@ -23,8 +23,15 @@ function GetUploads() {
             <button onClick={handleClick}>
                 See Uploads
             </button>
+
             <h2>
-                {fileStatus}
+                {uploadsList.length > 0
+                    ? uploadsList.map((item, index) => (
+                        <div key={index}>
+                            #{index} - {item}
+                        </div>
+                    ))
+                    : 'No uploads to display'}
             </h2>
         </div>
     );
