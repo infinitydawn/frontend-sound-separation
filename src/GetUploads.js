@@ -28,7 +28,7 @@ function GetUploads() {
             <h2>
                 {uploadsList.length > 0
                     ? uploadsList.map((item, index) => (
-                        <div class="upload-item" key={index}>#{index} - {item}</div>
+                        <div className="upload-item" key={index}>#{index} - {item}</div>
                     ))
                     : 'No uploads to display'}
             </h2>
