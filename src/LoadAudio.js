@@ -20,7 +20,7 @@ function LoadAudio({ onUpdateData }) {
             .then(response => response.json())
             .then((data) => {
                 console.log(data.message);
-                setFileStatus(data.message);
+                setFileStatus("Response Received.");
 
                 // Sending the data to the chart
                 if (onUpdateData) {
@@ -32,8 +32,8 @@ function LoadAudio({ onUpdateData }) {
                 }
             })
             .catch(err => {
-                console.log(err);
-                setFileStatus("Error fetching data");
+                console.error(err);
+                setFileStatus("Error fetching data: likely file doesn't exist");
             });
     };
 
@@ -45,6 +45,7 @@ function LoadAudio({ onUpdateData }) {
                 <button onClick={handleClick}>
                     Load Data To Chart
                 </button>
+                <h3>{fileStatus}</h3>
             </form>
             <h2>
 

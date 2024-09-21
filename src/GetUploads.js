@@ -9,6 +9,7 @@ function GetUploads() {
 
     const handleClick = (event) => {
         event.preventDefault();
+        setUploadsList(["Waiting For Server Response"])
         fetch(`${fetchLink}/see-uploads`, {
             method: "GET"
         })
