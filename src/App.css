@@ -87,7 +87,7 @@ input {
 }
 
 /* Mobile Styles */
-@media (max-width: 600px) {
+@media (max-width: 5000px) {
   .file-upload-section form,
   .load-audio-section form {
     flex-direction: column; /* Stack elements vertically on small screens */
