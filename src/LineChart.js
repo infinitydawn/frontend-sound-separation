@@ -10,7 +10,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
-// Registering components
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -51,10 +51,10 @@ const LineChart = ({ chartData = [] }) => {
                 data: downsampledData.length > 0 ? downsampledData : [0, 0, 0, 0, 0, 0, 0],
                 fill: false,
                 backgroundColor: 'rgb(75, 192, 192)',
-                borderColor: 'rgba(75, 192, 192, 1)', // Solid color for line
-                borderWidth: 1, // Thin line
-                tension: 0.4, // Smooth line
-                pointRadius: 0, // No points
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                tension: 0.4, 
+                pointRadius: 0, 
             },
         ],
     };
