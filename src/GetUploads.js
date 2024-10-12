@@ -19,7 +19,7 @@ function GetUploads() {
                 setUploadsList(data.message);
             })
     }
-
+//test
     return (
         <div>
             <button onClick={handleClick}>
