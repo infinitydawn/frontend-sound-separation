@@ -14,7 +14,7 @@ function LoadAudio({ onUpdateData }) {
     const handleClick = (event) => {
         event.preventDefault();
         setFileStatus("Waiting for response from server...");
-        fetch(`${fetchLink}/load-track?audioIndex=${audioIndex}`, {
+        fetch(`${fetchLink}/load-track?fileId=${audioIndex}`, {
             method: "GET"
         })
             .then(response => response.json())
@@ -40,7 +40,7 @@ function LoadAudio({ onUpdateData }) {
     return (
         <div>
             <form>
-                <input onChange={handleNumChange} type="number" placeholder="type index of audio"></input>
+                <input onChange={handleNumChange} type="text" placeholder="type index of audio"></input>
                 <label>Selected Index: {audioIndex}</label>
                 <button onClick={handleClick}>
                     Load Data To Chart
