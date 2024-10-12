@@ -1,4 +1,4 @@
-/* General Page Styles */
+
 .App {
   text-align: center;
   margin: 20px;
@@ -90,33 +90,33 @@ input {
 @media (max-width: 5000px) {
   .file-upload-section form,
   .load-audio-section form {
-    flex-direction: column; /* Stack elements vertically on small screens */
-    gap: 5px; /* Smaller gap on mobile */
+    flex-direction: column; 
+    gap: 5px; 
   }
 
   button {
-    width: 100%; /* Full-width buttons on mobile */
-    padding: 10px; /* Larger padding for better tap targets */
+    width: 100%; 
+    padding: 10px;
   }
 
   .section {
-    width: 95%; /* Take up more horizontal space on mobile */
+    width: 95%; 
   }
 
   input {
-    width: 100%; /* Full-width inputs on mobile */
+    width: 100%;
   }
 }
 
-/* General Styles */
+
 .get-uploads-section h2 div {
-  word-wrap: break-word; /* Force long words to break */
-  max-width: 100%; /* Ensure it doesn’t stretch too wide */
-  white-space: normal; /* Allow wrapping */
-  margin-bottom: 5px; /* Add some space between file names */
+  word-wrap: break-word; 
+  max-width: 100%; 
+  white-space: normal; 
+  margin-bottom: 5px; 
 }
 
-/* Optional: If you want ellipsis for long text */
+
 .get-uploads-section h2 div {
   white-space: nowrap;
   overflow: hidden;
@@ -125,7 +125,7 @@ input {
   display: block;
 }
 
-/* Section for managing text overflow */
+
 .get-uploads-section {
   text-align: left;
   overflow-wrap: break-word;
