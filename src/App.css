@@ -130,3 +130,13 @@ input {
   text-align: left;
   overflow-wrap: break-word;
 }
+
+
+.corner-image {
+  position: fixed;
+  bottom: -1.5%;         /* Distance from the bottom of the viewport */
+  right: 10px;       /* Distance from the right of the viewport */
+  width: 10%;       /* Adjust the size as needed */
+  height: auto;      /* Maintain aspect ratio */
+  z-index: 1000;     /* Ensure it stays above other content */
+}

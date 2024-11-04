@@ -4,6 +4,7 @@ import FileUpload from './FileUpload';
 import GetUploads from './GetUploads';
 import LineChart from './LineChart';
 import LoadAudio from './LoadAudio';
+import logo from './assets/mascot.png'; // Import your image
 
 function App() {
   const [chartData, setChartData] = useState([]); 
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <div className="App">
+      <img src={logo} alt="Logo" className="corner-image" /> {/* Add the image element here */}
       <h1>Percussion Remover App</h1>
 
       <div className="section file-upload-section">
