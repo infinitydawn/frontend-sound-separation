@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './FileUpload.css';
 
-function FileUpload({ onUpdateData }) {
+function FileUpload({ onSelectFile, onUpdateData, onFileID}) {
   let fetchLink = process.env.REACT_APP_API_URL;
   const [selectedFile, setSelectedFile] = useState(null);
   const [requestStatus, setReqStatus] = useState('');
@@ -16,6 +16,7 @@ function FileUpload({ onUpdateData }) {
     if (selectedFile) {
       console.log(selectedFile)
       if (selectedFile.type === "audio/wav") {
+        onSelectFile(selectedFile);
         const formData = new FormData();
         formData.append('file', selectedFile);
 
@@ -25,7 +26,9 @@ function FileUpload({ onUpdateData }) {
         })
           .then(response => response.json())
           .then(data => {
+            console.log("file id");
             console.log(data);
+            onFileID(data.fileId);
             setReqStatus("Uploaded Successfully!")
             //alert(data.message);
 
