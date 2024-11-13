@@ -99,7 +99,7 @@ function FileUpload({ onSelectFile, onUpdateData, onFileID }) {
   return (
     <div>
       <h2>Upload a File</h2>
-      <h3>{requestStatus}</h3>
+      <h3 className={requestStatus==="Uploading..." ? 'blinking-text' : ''}>{requestStatus}</h3>
       <form onSubmit={handleSubmit}>
         <input type="file" onChange={handleFileChange} />
         <div>

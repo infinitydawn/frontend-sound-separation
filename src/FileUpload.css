@@ -12,4 +12,23 @@
   button {
     padding: 5px 10px;
   }
+
+
+  /* Uploading blinking animation */
+  @keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.blinking-text {
+    color: green;
+    animation: blink 1s infinite; 
+}
   
