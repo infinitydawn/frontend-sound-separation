@@ -6,7 +6,6 @@ const Waveform = ({ audioUrl }) => {
     const containerRef = useRef(null);
     const [currentTime, setCurrentTime] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
-    const [url, setUrl] = useState(audioUrl);
 
     const { wavesurfer } = useWavesurfer({
         container: containerRef,
@@ -19,9 +18,10 @@ const Waveform = ({ audioUrl }) => {
 
     // Load audio file when the URL changes
     useEffect(() => {
-        if (wavesurfer && url) {
-            console.log(`Loading audio from URL: ${url}`);
-            wavesurfer.load(url);
+        if (wavesurfer && audioUrl) {
+            console.log(`Loading audio from URL: ${audioUrl}`);
+            wavesurfer.empty(); // Clear previous audio
+            wavesurfer.load(audioUrl);
             wavesurfer.on('ready', () => console.log('Audio is ready'));
             wavesurfer.on('audioprocess', () => setCurrentTime(wavesurfer.getCurrentTime()));
             wavesurfer.on('play', () => setIsPlaying(true));
@@ -29,10 +29,10 @@ const Waveform = ({ audioUrl }) => {
         }
         return () => {
             if (wavesurfer) {
-                wavesurfer.destroy();
+                wavesurfer.empty(); // Clean up audio
             }
         };
-    }, [url, wavesurfer]);
+   }, [audioUrl, wavesurfer]);
 
     const onPlayPause = useCallback(() => {
         if (wavesurfer) {

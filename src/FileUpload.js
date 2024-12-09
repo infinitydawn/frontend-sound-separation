@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './FileUpload.css';
 
-function FileUpload({ onSelectFile, onUpdateData, onFileID }) {
+function FileUpload({ onSelectFile, onUpdateData, onFileID, setRequestStatus }) {
   let fetchLink = process.env.REACT_APP_API_URL;
 
   // states for file transfer to server
   const [selectedFile, setSelectedFile] = useState(null);
-  const [requestStatus, setReqStatus] = useState('');
+  // const [requestStatus, setRequestStatus] = useState('');
 
   // Parameters for the filter
   const [sampleRate, setSampleRate] = useState(22050);
@@ -39,7 +39,7 @@ function FileUpload({ onSelectFile, onUpdateData, onFileID }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setReqStatus("Uploading...")
+    setRequestStatus("Uploading...")
 
     if (selectedFile) {
       console.log(selectedFile)
@@ -67,7 +67,7 @@ function FileUpload({ onSelectFile, onUpdateData, onFileID }) {
             console.log("file id");
             console.log(data);
             onFileID(data.fileId);
-            setReqStatus("Uploaded Successfully!")
+            setRequestStatus("Uploaded Successfully!")
             //alert(data.message);
 
             // pass data to chart
@@ -86,20 +86,19 @@ function FileUpload({ onSelectFile, onUpdateData, onFileID }) {
           })
           .catch(error => {
             console.error('Error:', error);
-            setReqStatus(error)
+            setRequestStatus(error)
           });
       } else {
-        setReqStatus("Wrong file type. Please select a WAV file, and try to upload it again.")
+        setRequestStatus("Wrong file type. Please select a WAV file, and try to upload it again.")
       }
     } else {
-      setReqStatus("File upload field is empty, please select a WAV file.")
+      setRequestStatus("File upload field is empty, please select a WAV file.")
     }
   };
 
   return (
     <div>
       <h2>Upload a File</h2>
-      <h3 className={requestStatus==="Uploading..." ? 'blinking-text' : ''}>{requestStatus}</h3>
       <form onSubmit={handleSubmit}>
         <input type="file" onChange={handleFileChange} />
         <div>
@@ -122,7 +121,6 @@ function FileUpload({ onSelectFile, onUpdateData, onFileID }) {
         </div>
 
         <button type="submit">Upload</button>
-        <h4>*Note: for every new request please reload the page! (I will fix it soon)</h4>
       </form>
     </div>
   );

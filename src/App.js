@@ -11,7 +11,8 @@ function App() {
   const [currentFileID, setFileID] = useState(""); // State for file ID
   const [harmonicFileUrl, setHarmonicFileUrl] = useState(null); // State for harmonic audio file URL
   const [percussiveFileUrl, setPercussiveFileUrl] = useState(null); // State for percussive audio file URL
-
+  const [requestStatus, setRequestStatus] = useState('');
+  
   const fetchLink = process.env.REACT_APP_API_URL;
 
   const handleUpdateData = (data) => {
@@ -55,7 +56,7 @@ function App() {
   return (
     <div className="App">
       <img src={logo} alt="Logo" className="corner-image" />
-      <h1>Percussion Remover App</h1>
+      <h1>Clean Wave</h1>
 
       {/* File Upload Section */}
       <div className="section file-upload-section">
@@ -63,7 +64,9 @@ function App() {
           onUpdateData={handleUpdateData}
           onSelectFile={handleFileSelect}
           onFileID={handleFileID}
+          setRequestStatus={setRequestStatus}
         />
+        <h3 className={requestStatus==="Uploading..." ? 'blinking-text' : ''}>{requestStatus}</h3>
       </div>
 
       {/* Waveform and Spectrogram for Selected File */}
@@ -76,7 +79,7 @@ function App() {
       )}
 
       {/* Harmonic Component */}
-      {harmonicFileUrl && (
+      {requestStatus !== "Uploading..." && harmonicFileUrl && (
         <div className="section">
           <h2>Harmonic Component</h2>
           <Waveform audioUrl={harmonicFileUrl} />
@@ -85,12 +88,17 @@ function App() {
       )}
 
       {/* Percussive Component */}
-      {percussiveFileUrl && (
+      {requestStatus !== "Uploading..." && percussiveFileUrl && (
         <div className="section">
           <h2>Percussive Component</h2>
           <Waveform audioUrl={percussiveFileUrl} />
           <Spectrogram audioUrl={percussiveFileUrl} />
         </div>
+      )}
+
+
+      {requestStatus === "Uploading..." && (
+        <h2>Waiting...</h2>
       )}
     </div>
   );
